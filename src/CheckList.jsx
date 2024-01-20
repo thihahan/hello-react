@@ -14,7 +14,7 @@ export default function CheckList({list, remove, toggle, done}){
   
         {/* Edit Icon */}
           <IconButton>
-            <Link to={'/edit'}>
+            <Link to={'/edit'} state={{item}}>
               <EditIcon color="info"/>
             </Link>
           </IconButton>
