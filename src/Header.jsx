@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import MenuIcon from '@mui/icons-material/Menu';
 import ClearAllIcon from '@mui/icons-material/ClearAll';
 import ChecklistIcon from '@mui/icons-material/Checklist';
-export default function Header({count}){
+export default function Header({count, clear}){
     return (
         <AppBar position='static'>
             <Toolbar>
@@ -15,8 +15,8 @@ export default function Header({count}){
                 <Typography sx={{flexGrow : 1}}>
                     CheckList
                 </Typography>
-                <IconButton>
-                    <ClearAllIcon />
+                <IconButton onClick={clear}>
+                    <ClearAllIcon color='inherit'/>
                 </IconButton>
             </Toolbar>
         </AppBar>

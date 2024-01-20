@@ -3,6 +3,9 @@ import Header from "./Header";
 import AddForm from "./AddForm";
 import CheckList from "./CheckList";
 import Container from '@mui/material/Container';
+import DrawerTest from "./MUI/Drawer";
+import { Button } from "@mui/material";
+import DoneList from "./DoneList";
 
 export default function App(){
   const [list, setList] = useState([
@@ -11,6 +14,12 @@ export default function App(){
     {_id : 3, subject : "Mango", done : false}
   ])
 
+  
+
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  window.addEventListener("click", () => {
+    setDrawerOpen(false)
+  })
   const add = subject => {
     if (!subject) return false;
     const _id = list.length ? list[list.length - 1]._id + 1 : 1
@@ -21,11 +30,28 @@ export default function App(){
     setList(list.filter(item => item._id != _id))
   }
 
+  const toggle = _id => {
+    setList(
+      list.map(item => {
+        if(item._id === _id) item.done = !item.done
+        return item;
+      })
+    )
+  }
+
+  const clear = () => setList(list.filter(item => !item.done))
+
   return <div>
-    <Header count={list.length}/>
-    <Container maxWidth="sm">
-    <AddForm add={add} />
-    <CheckList list={list} remove={remove} />
-      </Container>
+      <AddForm add={add} />
+      <CheckList 
+      list={list.filter(item => !item.done)} 
+      remove={remove} 
+      toggle={toggle}/>
+      <CheckList list={list.filter(item => item.done)}
+       remove={remove} 
+       toggle={toggle}
+       done={true}
+       />
+      <DrawerTest drawerOpen={drawerOpen}/>
   </div>
 }
