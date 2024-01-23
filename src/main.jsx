@@ -9,10 +9,11 @@ import { CssBaseline } from '@mui/material';
 import "./index.css"
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Edit from './Edit.jsx';
-import AppRoot from './AppRoot.jsx';
+import Template from './Template.jsx';
+import Theme from './Themes.jsx';
 
 
-const AppRouter = () => {
+export default function AppRouter(){
   const [list, setList] = useState([
     {_id : 1, subject : "Apple", done : false},
     {_id : 2, subject : "Orange", done : false},
@@ -50,7 +51,7 @@ const AppRouter = () => {
   const router = createBrowserRouter([
     {
       path : "/",
-      element : <AppRoot count={list.filter(item => !item.done).length} clear={clear}/>,
+      element : <Template count={list.filter(item => !item.done).length} clear={clear}/>,
       children : [
         {
           path : "/",
@@ -70,7 +71,6 @@ const AppRouter = () => {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <CssBaseline />
-    <AppRouter />
+    <Theme/>
   </React.StrictMode>,
 )

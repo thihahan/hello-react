@@ -2,7 +2,7 @@ import { Container } from "@mui/material";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 
-export default function AppRoot({count, clear}){
+export default function Template({count, clear}){
     return (
         <div>
             <Header count={count} clear={clear}/>
